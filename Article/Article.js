@@ -112,3 +112,45 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+const articlejs = document.querySelector('.articles');
+data.forEach( function(data){
+  articlejs.appendChild(createtemplate(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph));
+});
+
+function createtemplate(title, date, p1, p2, p3){
+  const article = document.createElement('div');
+  const articletitle = document.createElement('h2');
+  const articledate = document.createElement('p');
+  const paragraph1 = document.createElement('p');
+  const paragraph2 = document.createElement('p');
+  const paragraph3 = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+  /*...............................appending child .................*/
+  article.appendChild(articletitle);
+  article.appendChild(articledate);
+  article.appendChild(paragraph1);
+  article.appendChild(paragraph2);
+  article.appendChild(paragraph3);
+  article.appendChild(expandButton);
+
+  // /*........................classes ......................*/
+
+  article.classList.add('article');
+  articledate.classList.add('date');
+  expandButton.classList.add('expandButton');
+  /*............................content.........................*/
+  articletitle.textContent = title;
+  articledate.textContent = date;
+  paragraph1.textContent = p1;
+  paragraph2.textContent = p2;
+  paragraph3.textContent = p3;
+  expandButton.textContent ='Click to Expand'
+  expandButton.addEventListener('click', function(e){
+    article.classList.toggle('article-open')
+
+  } );
+ 
+
+  return article;
+}
